@@ -1,6 +1,6 @@
 <template>
-  <div class="wrapper">
-      学习资料
+  <div>
+      面向对象
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 
 
 export default {
-  name: "index",
+  name: "basePageSix",
   components: {
   
   },
