@@ -9,6 +9,7 @@ import basePageFour from '@/page/basePageFour'
 import basePageFive from '@/page/basePageFive'
 import basePageSix from '@/page/basePageSix'
 import basePageSeven from '@/page/basePageSeven'
+import basePageEight from '@/page/basePageEight'
 
 Vue.use(Router)
 
@@ -52,6 +53,11 @@ export default new Router({
       path: '/basePageSeven',
       name: 'basePageSeven',
       component: basePageSeven,
-    }
+    },
+    {
+        path: '/basePageEight',
+        name: 'basePageEight',
+        component: basePageEight,
+      }
   ]
 })

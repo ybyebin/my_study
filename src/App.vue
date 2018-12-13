@@ -81,6 +81,10 @@ export default {
             {
               title: "事件循环机制",
               name: "basePageSeven"
+            },
+            {
+              title: "Promise",
+              name: "basePageEight"
             }
           ]
         },
