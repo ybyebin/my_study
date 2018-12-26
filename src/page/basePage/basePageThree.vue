@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="title">变量对象</div>
     <div class="has-img">
-      <img src="../assets/image/basePageThree/1.png" alt>
+      <img src="../../assets/image/basePageThree/1.png" alt>
     </div>
     <p>在JavaScript中，我们肯定不可避免的需要声明变量和函数，可是JS解析器是如何找到这些变量的呢？我们还得对执行上下文有一个进一步的了解。</p>
     <p>在上一篇文章中，我们已经知道，当调用一个函数时（激活），一个新的执行上下文就会被创建。而一个执行上下文的生命周期可以分为两个阶段。</p>
@@ -19,7 +19,7 @@
       </ul>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageThree/2.png" alt>
+      <img src="../../assets/image/basePageThree/2.png" alt>
     </div>
     <p>从这里我们就可以看出详细了解执行上下文极为重要，因为其中涉及到了变量对象，作用域链，this等很多人没有怎么弄明白，但是却极为重要的概念，它关系到我们能不能真正理解JavaScript。在后面的文章中我们会一一详细总结，这里我们先重点了解变量对象。</p>
     <div class="session">
@@ -82,7 +82,7 @@
     </div>
 
     <div class="has-img">
-      <img src="../assets/image/basePageThree/3.png" alt>
+      <img src="../../assets/image/basePageThree/3.png" alt>
     </div>
     <p>根据这个规则，理解变量提升就变得十分简单了。在很多文章中虽然提到了变量提升，但是具体是怎么回事还真的很多人都说不出来，以后在面试中用变量对象的创建过程跟面试官解释变量提升，保证瞬间提升逼格。</p>
     <p>在上面的规则中我们看出，function声明会比var声明优先级更高一点。为了帮助大家更好的理解变量对象，我们结合一些简单的例子来进行探讨。</p>
@@ -262,7 +262,6 @@
 
 <script>
 export default {
-  name: "basePageThree",
   components: {},
   data() {
     return {};
@@ -277,5 +276,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>

@@ -1,13 +1,14 @@
 <template>
   <div class="main-content">
-    <div class="title">Promise</div>
-    <div>1111111111</div>
+    
+    <div class="has-img">
+     <img src="../../assets/image/study/4.gif" alt>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "basePageEight",
   components: {},
   data() {
     return {};
@@ -22,5 +23,7 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+
+@import "../../assets/less/javaScript.less";
+
 </style>

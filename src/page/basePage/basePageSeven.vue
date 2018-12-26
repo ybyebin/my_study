@@ -43,7 +43,7 @@
       </ul>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/1.png" alt>
+      <img src="../../assets/image/basePageSeven/1.png" alt>
     </div>
     <div class="ul-des">
       <ul>
@@ -116,7 +116,7 @@
     </div>
     <p>首先，事件循环从宏任务队列开始，这个时候，宏任务队列中，只有一个script(整体代码)任务。每一个任务的执行顺序，都依靠函数调用栈来搞定，而当遇到任务源时，则会先分发任务到对应的队列中去，所以，上面例子的第一步执行如下图所示。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/2.png" alt>
+      <img src="../../assets/image/basePageSeven/2.png" alt>
     </div>
     <p>第二步：script任务执行时首先遇到了setTimeout，setTimeout为一个宏任务源，那么他的作用就是将任务分发到它对应的队列中。</p>
 
@@ -129,31 +129,31 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/3.png" alt>
+      <img src="../../assets/image/basePageSeven/3.png" alt>
     </div>
     <p>第三步：script执行时遇到Promise实例。Promise构造函数中的第一个参数，是在new的时候执行，因此不会进入任何其他的队列，而是直接在当前任务直接执行了，而后续的.then则会被分发到micro-task的Promise队列中去。</p>
     <p>因此，构造函数执行时，里面的参数进入函数调用栈执行。for循环不会进入任何队列，因此代码会依次执行，所以这里的promise1和promise2会依次输出。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/4.png" alt>
+      <img src="../../assets/image/basePageSeven/4.png" alt>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/5.png" alt>
+      <img src="../../assets/image/basePageSeven/5.png" alt>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/6.png" alt>
+      <img src="../../assets/image/basePageSeven/6.png" alt>
     </div>
     <p>script任务继续往下执行，最后只有一句输出了globa1，然后，全局任务就执行完毕了。</p>
     <p>第四步：第一个宏任务script执行完毕之后，就开始执行所有的可执行的微任务。这个时候，微任务中，只有Promise队列中的一个任务then1，因此直接执行就行了，执行结果输出then1，当然，他的执行，也是进入函数调用栈中执行的。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/7.png" alt>
+      <img src="../../assets/image/basePageSeven/7.png" alt>
     </div>
     <p>第五步：当所有的micro-tast执行完毕之后，表示第一轮的循环就结束了。这个时候就得开始第二轮的循环。第二轮循环仍然从宏任务macro-task开始。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/8.png" alt>
+      <img src="../../assets/image/basePageSeven/8.png" alt>
     </div>
     <p>这个时候，我们发现宏任务中，只有在setTimeout队列中还要一个timeout1的任务等待执行。因此就直接执行即可。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/9.png" alt>
+      <img src="../../assets/image/basePageSeven/9.png" alt>
     </div>
     <p>这个时候宏任务队列与微任务队列中都没有任务了，所以代码就不会再输出其他东西了。</p>
     <p>那么上面这个例子的输出结果就显而易见。大家可以自行尝试体会。</p>
@@ -240,7 +240,7 @@
     <p>这个例子看上去有点复杂，乱七八糟的代码一大堆，不过不用担心，我们一步一步来分析一下。</p>
     <p>第一步：宏任务script首先执行。全局入栈。glob1输出。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/10.png" alt>
+      <img src="../../assets/image/basePageSeven/10.png" alt>
     </div>
     <p>第二步，执行过程遇到setTimeout。setTimeout作为任务分发器，将任务分发到对应的宏任务队列中。</p>
 
@@ -262,7 +262,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/11.png" alt>
+      <img src="../../assets/image/basePageSeven/11.png" alt>
     </div>
     <p>第三步：执行过程遇到setImmediate。setImmediate也是一个宏任务分发器，将任务分发到对应的任务队列中。setImmediate的任务队列会在setTimeout队列的后面执行。</p>
 
@@ -284,7 +284,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/12.png" alt>
+      <img src="../../assets/image/basePageSeven/12.png" alt>
     </div>
     <p>第四步：执行遇到nextTick，process.nextTick是一个微任务分发器，它会将任务分发到对应的微任务队列中去。</p>
 
@@ -297,7 +297,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/13.png" alt>
+      <img src="../../assets/image/basePageSeven/13.png" alt>
     </div>
     <p>第五步：执行遇到Promise。Promise的then方法会将任务分发到对应的微任务队列中，但是它构造函数中的方法会直接执行。因此，glob1_promise会第二个输出。</p>
 
@@ -313,10 +313,10 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/14.png" alt>
+      <img src="../../assets/image/basePageSeven/14.png" alt>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/15.png" alt>
+      <img src="../../assets/image/basePageSeven/15.png" alt>
     </div>
     <p>第六步：执行遇到第二个setTimeout。</p>
     <div>
@@ -337,7 +337,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/16.png" alt>
+      <img src="../../assets/image/basePageSeven/16.png" alt>
     </div>
     <p>第七步：先后遇到nextTick与Promise</p>
     <div>
@@ -355,7 +355,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/17.png" alt>
+      <img src="../../assets/image/basePageSeven/17.png" alt>
     </div>
     <p>第八步：再次遇到setImmediate。</p>
     <div>
@@ -376,7 +376,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/18.png" alt>
+      <img src="../../assets/image/basePageSeven/18.png" alt>
     </div>
     <p>这个时候，script中的代码就执行完毕了，执行过程中，遇到不同的任务分发器，就将任务分发到各自对应的队列中去。接下来，将会执行所有的微任务队列中的任务。</p>
 
@@ -386,7 +386,7 @@
 
     <p>这个时候，script已经执行完毕，所以就从setTimeout队列开始执行。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSeven/19.png" alt>
+      <img src="../../assets/image/basePageSeven/19.png" alt>
     </div>
     <p>setTimeout任务的执行，也依然是借助函数调用栈来完成，并且遇到任务分发器的时候也会将任务分发到对应的队列中去。</p>
 
@@ -458,7 +458,6 @@
 
 <script>
 export default {
-  name: "basePageSeven",
   components: {},
   data() {
     return {};
@@ -473,5 +472,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>

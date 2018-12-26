@@ -51,7 +51,6 @@ export default {
     return {
       sideData: [
         {
-          //   name: 1,
           title: "基础进阶(搬砖)",
           detail: [
             {
@@ -85,18 +84,76 @@ export default {
             {
               title: "Promise",
               name: "basePageEight"
+            },
+            {
+              title: "js隐式转换",
+              name: "basePageNine"
             }
           ]
         },
         {
-          //   name: "2",
-          title: "Item 2",
+          title: "js代码片段",
           detail: [
-            { title: "Option 1", name: "2-1" },
+            { title: "常用", name: "jsPageOne" },
             {
               title: "Option 2",
               name: "2-2"
             }
+          ]
+        },
+        {
+          title: "css代码片段",
+          detail: [
+            { title: "常用", name: "csPageOne" },
+            {
+              title: "Option 2",
+              name: "2-2"
+            }
+          ]
+        },
+        {
+          title: "开发问题解决方案",
+          detail: [
+            { title: "基础进阶", name: "bookmark" },
+            {
+              title: "Option 2",
+              name: "2-2"
+            }
+          ]
+        },
+        {
+          title: "学习资料",
+          detail: [
+            { title: "JavaScript变量", name: "JPageOne" },
+            {
+              title: "JavaScript运算符",
+              name: "JPageTwo"
+            },
+            {
+              title: "JavaScript数组",
+              name: "JPageThree"
+            },
+             {
+              title: "JavaScript字符串",
+              name: "JPageFour"
+            },
+            {
+              title: "JavaScript函数基础",
+              name: "JPageFive"
+            },
+           
+            {
+              title: "JavaScript基本操作",
+              name: "JPageSix"
+            },
+            {
+              title: "JavaScript正则表达式",
+              name: "JPageSeven"
+            },
+             {
+              title: "JavaScript流程语句",
+              name: "JPageEight"
+            },
           ]
         }
       ]
@@ -123,7 +180,7 @@ export default {
   z-index: 999;
   width: 200px;
   overflow-x: hidden;
-  width: 200px;
+  width: 220px;
 
   background: #f5f7f9;
 }
@@ -131,7 +188,7 @@ export default {
   position: absolute;
   top: 60px;
   bottom: 0;
-  left: 200px;
+  left: 210px;
   right: 0;
   z-index: 998;
   width: auto;

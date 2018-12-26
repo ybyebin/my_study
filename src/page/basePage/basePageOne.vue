@@ -4,7 +4,7 @@
       内存空间详解
     </div>
     <div class="has-img">
-     <img src="../assets/image/basePageOne/1.png" alt>
+     <img src="../../assets/image/basePageOne/1.png" alt>
     </div>
     <div>
       <pre>
@@ -28,7 +28,7 @@
     <p>与C/C++不同，JavaScript中并没有严格意义上区分栈内存与堆内存。因此我们可以简单粗暴的理解为JavaScript的所有数据都保存在堆内存中。但是在某些场景，我们仍然需要基于堆栈数据结构的思维来实现一些功能，比如JavaScript的执行上下文（关于执行上下文我会在下一篇文章中总结）。执行上下文的执行顺序借用了栈数据结构的存取方式。(也就是后面我们会经常提到的函数调用栈)。因此理解栈数据结构的原理与特点十分重要。</p>
     <p>要简单理解栈的存取方式，我们可以通过类比乒乓球盒子来分析。如下图左侧。</p>
     <div class="has-img">
-     <img src="../assets/image/basePageOne/2.png" alt>
+     <img src="../../assets/image/basePageOne/2.png" alt>
     </div>
     <p>
       这种乒乓球的存放方式与栈中存取数据的方式如出一辙。处于盒子中最顶层的乒乓球5，它一定是最后被放进去，但可以最先被使用。而我们想要使用底层的乒乓球1，就必须将上面的4个乒乓球取出来，让乒乓球1处于盒子顶层。这就是栈空间
@@ -49,7 +49,7 @@
     <p>在JavaScript中，理解队列数据结构的目的主要是为了清晰的明白事件循环（Event Loop）的机制到底是怎么回事。在后续的章节中我会详细分析事件循环机制。</p>
     <p>队列是一种先进先出（FIFO）的数据结构。正如排队过安检一样，排在队伍前面的人一定是最先过检的人。用以下的图示可以清楚的理解队列的原理。</p>
    <div class="has-img">
-     <img src="../assets/image/basePageOne/3.png" alt>
+     <img src="../../assets/image/basePageOne/3.png" alt>
     </div>
 
     <div class="session">
@@ -87,7 +87,7 @@
       </pre>
     </div>
    <div class="has-img">
-     <img src="../assets/image/basePageOne/4.png" alt>
+     <img src="../../assets/image/basePageOne/4.png" alt>
     </div>
 
     <p>因此当我们要访问堆内存中的引用数据类型时，实际上我们首先是从变量对象中获取了该对象的地址引用（或者地址指针），然后再从堆内存中取得我们需要的数据。</p>
@@ -124,7 +124,7 @@
     </p>
 
     <div class="has-img">
-     <img src="../assets/image/basePageOne/5.png" alt>
+     <img src="../../assets/image/basePageOne/5.png" alt>
     </div>
 
     <p>
@@ -134,7 +134,7 @@
     <p>因此当我改变n时，m也发生了变化。这就是引用类型的特性。</p>
 
    <div class="has-img">
-     <img src="../assets/image/basePageOne/6.png" alt>
+     <img src="../../assets/image/basePageOne/6.png" alt>
     </div>
 
     <p>通过内存的角度来理解，是不是感觉要轻松很多？除此之外，我们还可以以此为基础，一步一步的理解JavaScript的执行上下文，作用域链，闭包，原型链等重要概念。其他的我会在以后的文章慢慢总结，敬请期待。</p>
@@ -182,7 +182,6 @@
 
 <script>
 export default {
-  name: "basePageOne",
   components: {},
   data() {
     return {};
@@ -197,6 +196,6 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 
 </style>

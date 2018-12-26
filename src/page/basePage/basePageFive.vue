@@ -7,7 +7,7 @@
 
     <p>在前面几篇文章中，我有好几个地方都提到执行上下文的生命周期，为了防止大家没有记住，再次来回顾一下，如下图。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFive/1.png" alt>
+      <img src="../../assets/image/basePageFive/1.png" alt>
     </div>
     <p>在执行上下文的创建阶段，会分别生成变量对象，建立作用域链，确定this指向。其中变量对象与作用域链我们都已经仔细总结过了，而这里的关键，就是确定this指向。</p>
     <p>
@@ -54,8 +54,7 @@
     <p>
       <strong>一、全局对象中的this</strong>
     </p>
-
-    <p>关于全局对象的this，我之前在总结变量对象的时候提到过，它是一个比较特殊的存在。全局环境中的this，指向它本身。因此，这也相对简单，没有那么多复杂的情况需要考虑。</p>
+    <p>关于全局对象的this,我之前在总结变量对象的时候提到过,它是一个比较特殊的存在。全局环境中的this,指向它本身。因此,这也相对简单,没有那么多复杂的情况需要考虑.</p>
     <div>
       <pre>
             <div class="code">
@@ -515,7 +514,6 @@
 
 <script>
 export default {
-  name: "basePageFive",
   components: {},
   data() {
     return {};
@@ -530,5 +528,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>

@@ -223,6 +223,44 @@ const pushOrder = (that, parma) => {
 
 
 
+const timeformat = (date, format,week)=>{
+    // 全局时间格式化输出    .format('yyyy-MM-dd hh:mm:ss')
+    let args = {
+       "M+": date.getMonth() + 1,
+       "d+": date.getDate(),
+       "h+": date.getHours(),
+       "m+": date.getMinutes(),
+       "s+": date.getSeconds(),
+       "q+": Math.floor((date.getMonth() + 3) / 3), // quarter
+       S: date.getMilliseconds()
+     };
+     if (/(y+)/.test(format)) {
+       format = format.replace(
+         RegExp.$1,
+         (date.getFullYear() + "").substr(4 - RegExp.$1.length)
+       );
+     }
+     for (let i in args) {
+       let n = args[i];
+       if (new RegExp("(" + i + ")").test(format)) {
+         format = format.replace(
+           RegExp.$1,
+           RegExp.$1.length === 1 ? n : ("00" + n).substr(("" + n).length)
+         );
+       }
+     }
+
+     if(week){
+         let day = date.getDay() ;
+         console.log('查看'+day)
+        let show_day=['周日','周一','周二','周三','周四','周五','周六'][day]; 
+        format = show_day + format;
+     }
+
+     return format;
+}
+
+
 
 export default ({
 

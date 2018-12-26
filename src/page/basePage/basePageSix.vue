@@ -319,7 +319,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSix/1.png" alt>
+      <img src="../../assets/image/basePageSix/1.png" alt>
     </div>
     <p>
       通过图示我们可以看出，构造函数的prototype与所有实例对象的
@@ -442,7 +442,7 @@
     </div>
     <p>那么我们可以用如下的图来表示这个函数的原型链。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageSix/2.png" alt>
+      <img src="../../assets/image/basePageSix/2.png" alt>
     </div>
     <p>其中add是Function对象的实例。而Function的原型对象同时又是Object原型的实例。这样就构成了一条原型链。原型链的访问，其实跟作用域链有很大的相似之处，他们都是一次单向的查找过程。因此实例对象能够通过原型链，访问到处于原型链上对象的所有属性与方法。这也是foo最终能够访问到处于Object原型对象上的toString方法的原因。</p>
     <p>
@@ -493,7 +493,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageSix/3.png" alt>
+      <img src="../../assets/image/basePageSix/3.png" alt>
     </div>
 
     <p>当然关于继承还有更好的方式。</p>
@@ -978,7 +978,6 @@
 
 <script>
 export default {
-  name: "basePageSix",
   components: {},
   data() {
     return {};
@@ -993,5 +992,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>

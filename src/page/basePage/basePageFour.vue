@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="title">作用域链与闭包</div>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/1.png" alt>
+      <img src="../../assets/image/basePageFour/1.png" alt>
     </div>
 
     <p>初学JavaScript的时候，我在学习闭包上，走了很多弯路。而这次重新回过头来对基础知识进行梳理，要讲清楚闭包，也是一个非常大的挑战。</p>
@@ -52,7 +52,7 @@
     </div>
 
     <div class="has-img">
-      <img src="../assets/image/basePageFour/2.png" alt>
+      <img src="../../assets/image/basePageFour/2.png" alt>
     </div>
 
     <p>
@@ -60,7 +60,7 @@
     </p>
     <p>回顾一下上一篇文章我们分析的执行上下文的生命周期，如下图。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/3.png" alt>
+      <img src="../../assets/image/basePageFour/3.png" alt>
     </div>
     <p>我们知道函数在调用激活时，会开始创建对应的执行上下文，在执行上下文生成的过程中，变量对象，作用域链，以及this的值会分别被确定。之前一篇文章我们详细说明了变量对象，而这里，我们将详细说明作用域链。</p>
     <p>
@@ -101,7 +101,7 @@
     <p>我们可以直接用一个数组来表示作用域链，数组的第一项scopeChain[0]为作用域链的最前端，而数组的最后一项，为作用域链的最末端，所有的最末端都为全局变量对象。</p>
     <p>很多人会误解为当前作用域与上层作用域为包含关系，但其实并不是。以最前端为起点，最末端为终点的单方向通道我认为是更加贴切的形容。如图。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/4.png" alt>
+      <img src="../../assets/image/basePageFour/4.png" alt>
     </div>
     <blockquote>
       <p>注意，因为变量对象在执行上下文进入执行阶段时，就变成了活动对象，这一点在上一篇文章中已经讲过，因此图中使用了AO来表示。Active Object</p>
@@ -181,7 +181,7 @@
     <p>这样，我们就可以称foo为闭包。</p>
     <p>下图展示了闭包foo的作用域链。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/5.png" alt>
+      <img src="../../assets/image/basePageFour/5.png" alt>
     </div>
 
     <p>我们可以在chrome浏览器的开发者工具中查看这段代码运行时产生的函数调用栈与作用域链的生成情况。如下图。</p>
@@ -189,7 +189,7 @@
       <p>关于如何在chrome中观察闭包，以及更多闭包的例子，请阅读基础系列（六）</p>
     </blockquote>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/6.png" alt>
+      <img src="../../assets/image/basePageFour/6.png" alt>
     </div>
     <p>在上面的图中，红色箭头所指的正是闭包。其中Call Stack为当前的函数调用栈，Scope为当前正在被执行的函数的作用域链，Local为当前的局部变量。</p>
     <p>
@@ -271,7 +271,7 @@
 
     <p>在上面的例子中，我使用函数自执行的方式，创建了一个模块。add是模块对外暴露的一个公共方法。而变量a，b被作为私有变量。在面向对象的开发中，我们常常需要考虑是将变量作为私有变量，还是放在构造函数中的this中，因此理解闭包，以及原型链是一个非常重要的事情。模块十分重要，因此我会在以后的文章专门介绍，这里就暂时不多说啦。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/7.png" alt>
+      <img src="../../assets/image/basePageFour/7.png" alt>
     </div>
 
     <p>为了验证自己有没有搞懂作用域链与闭包，这里留下一个经典的思考题，常常也会在面试中被问到。</p>
@@ -304,7 +304,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/8.png" alt>
+      <img src="../../assets/image/basePageFour/8.png" alt>
     </div>
     <p>可能不少人对于setTimeout的理解止步于此，但还是有不少人发现了一些其他的东西，并在评论里提出了疑问。比如上图中的这个数字7，是什么？</p>
 
@@ -344,7 +344,7 @@
     </p>
     <p>我用下图跟大家展示一下队列数据结构的特点。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/9.png" alt>
+      <img src="../../assets/image/basePageFour/9.png" alt>
     </div>
     <p>
       <strong>而这个队列执行的时间，需要等待到函数调用栈清空之后才开始执行。</strong>即所有可执行代码执行完毕之后，才会开始执行由setTimeout定义的操作。而这些操作进入队列的顺序，则由设定的延迟时间来决定。
@@ -388,7 +388,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/10.png" alt>
+      <img src="../../assets/image/basePageFour/10.png" alt>
     </div>
     <p>OK，关于setTimeout就暂时先介绍到这里，我们回过头来看看那个循环闭包的思考题。</p>
 
@@ -419,7 +419,7 @@
       </pre>
     </div>
     <div class="has-img">
-      <img src="../assets/image/basePageFour/11.png" alt>
+      <img src="../../assets/image/basePageFour/11.png" alt>
     </div>
     <p>当然，也可以在setTimeout的第一个参数处利用闭包。</p>
     <div>
@@ -439,7 +439,6 @@
 
 <script>
 export default {
-  name: "basePageFour",
   components: {},
   data() {
     return {};
@@ -454,5 +453,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>

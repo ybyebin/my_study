@@ -2,7 +2,7 @@
   <div class="main-content">
     <div class="title">执行上下文</div>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/1.png" alt>
+      <img src="../../assets/image/basePageTwo/1.png" alt>
     </div>
     <p>我们在JS学习初期或者面试的时候常常会遇到考核变量提升的思考题。比如先来一个简单一点的。</p>
     <div>
@@ -52,7 +52,7 @@
     </div>
     <p>我们用ECStack来表示处理执行上下文组的堆栈。我们很容易知道，第一步，首先是全局上下文入栈。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/2.png" alt>
+      <img src="../../assets/image/basePageTwo/2.png" alt>
     </div>
     <p>
       全局上下文入栈之后，其中的可执行代码开始执行，直到遇到了
@@ -61,30 +61,30 @@
     </p>
 
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/3.png" alt>
+      <img src="../../assets/image/basePageTwo/3.png" alt>
     </div>
     <p>
       changeColor的上下文入栈之后，控制器开始执行其中的可执行代码，遇到
       <code>swapColors()</code>之后又激活了一个执行上下文。因此第三步是swapColors的执行上下文入栈。
     </p>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/4.png" alt>
+      <img src="../../assets/image/basePageTwo/4.png" alt>
     </div>
     <p>在swapColors的可执行代码中，再没有遇到其他能生成执行上下文的情况，因此这段代码顺利执行完毕，swapColors的上下文从栈中弹出。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/5.png" alt>
+      <img src="../../assets/image/basePageTwo/5.png" alt>
     </div>
 
     <p>swapColors的执行上下文弹出之后，继续执行changeColor的可执行代码，也没有再遇到其他执行上下文，顺利执行完毕之后弹出。这样，ECStack中就只身下全局上下文了。</p>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/6.png" alt>
+      <img src="../../assets/image/basePageTwo/6.png" alt>
     </div>
     <p>全局上下文在浏览器窗口关闭后出栈。</p>
     <blockquote>
       <p>注意：函数中，遇到return能直接终止可执行代码的执行，因此会直接将当前上下文弹出栈。</p>
     </blockquote>
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/7.png" alt>
+      <img src="../../assets/image/basePageTwo/7.png" alt>
     </div>
     <p>详细了解了这个过程之后，我们就可以对执行上下文总结一些结论了。</p>
     <div class="ul-des">
@@ -116,7 +116,7 @@
     <p>因为f1中的函数f2在f1的可执行代码中，并没有被调用执行，因此执行f1时，f2不会创建新的上下文，而直到result执行时，才创建了一个新的。具体演变过程如下。</p>
 
     <div class="has-img">
-      <img src="../assets/image/basePageTwo/8.png" alt>
+      <img src="../../assets/image/basePageTwo/8.png" alt>
     </div>
     <p>最后留一个简单的例子，大家可以自己脑补一下这个例子在执行过程中执行上下文的变化情况。</p>
     <div>
@@ -146,7 +146,6 @@
 
 <script>
 export default {
-  name: "basePageTwo",
   components: {},
   data() {
     return {};
@@ -161,5 +160,5 @@ export default {
 </script>
 
 <style scoped lang="less">
-@import "../assets/less/basePage.less";
+@import "../../assets/less/basePage.less";
 </style>
