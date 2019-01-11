@@ -2,189 +2,41 @@
   <div class="main-content">
     <div class="title">js隐式转换</div>
     <div class="rich_media_content" id="js_content">
-      <p
-        style
-      >你有没有在面试中遇到特别奇葩的js隐形转换的面试题，第一反应是怎么会是这样呢？难以自信，js到底是怎么去计算得到结果，你是否有深入去了解其原理呢？下面将深入讲解其实现原理。</p>
-      <p
-        style
-      >其实这篇文章初稿三个月前就写好了，在我读一些源码库时，遇到了这些基础知识，想归档整理下，就有了这篇文章。由于一直忙没时间整理，最近看到了这个比较热的题，决定把这篇文章整理下。</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">const</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;i</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;toString</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->function</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
-  class
+      <p>你有没有在面试中遇到特别奇葩的js隐形转换的面试题，第一反应是怎么会是这样呢？难以自信，js到底是怎么去计算得到结果，你是否有深入去了解其原理呢？下面将深入讲解其实现原理。</p>
+      <p>其实这篇文章初稿三个月前就写好了，在我读一些源码库时，遇到了这些基础知识，想归档整理下，就有了这篇文章。由于一直忙没时间整理，最近看到了这个比较热的题，决定把这篇文章整理下。</p>
+      <pre><code>
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">const</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> a </span><span>=</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;i</span><span>:</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span>,</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;toString</span><span>:</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span style="box-sizing: border-box;color: rgb(0, 0, 136);"
+>function</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span style>()</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >return</span><span
-  class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->i</span><span
-  class
-  style=""
->++;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;</span><span
-  class
-  style=""
->}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
+> a</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">i</span><span class style>++;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;</span><span>}</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span>}</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >if</span><span
-  class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> </span><span style>(</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">a </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >1</span><span
-  class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->&amp;&amp;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> </span><span>&amp;&amp;</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> a </span><span style>==</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
-  class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->&amp;&amp;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span>&amp;&amp;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> a </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->3</span><span
+>3</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;console</span><span
   class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;console</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->log</span><span
-  class
-  style=""
->(</span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">log</span><span class style>(</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >'hello world!'</span><span
   class
-  style=""
->);</span><span
+  style
+>);</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
+  style
 >}</span></code></pre>
       <p style>网上给出了很多不错的解析过程，读了下面内容，你将更深入的了解其执行过程。</p>
       <h2
@@ -192,72 +44,42 @@
       >1、js数据类型</h2>
       <p style>js中有7种数据类型，可以分为两类：原始类型、对象类型：</p>
       <p style>基础类型(原始值)：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(102, 0, 102);">Undefined</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(102, 0, 102);">Undefined</span><span
   class
-  style=""
->、</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>、</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Null</span><span
-  class
-  style=""
->、</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Null</span><span class style>、</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
-  style=""
->、</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>、</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->、</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>、</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Boolean</span><span
   class
-  style=""
->、</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>、</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Symbol</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">es6</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->es6</span><span
-  class
-  style=""
+  style
 >新出的，本文不讨论这种类型)</span></code></pre>
       <p style>复杂类型(对象值)：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">object</span></code></pre>
+      <pre><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">object</span></code></pre>
       <h2
         style="box-sizing: border-box;margin-top: 1em;margin-bottom: 16px;line-height: 1.225;font-size: 1.5em;font-weight: bold;padding-bottom: 0.3em;border-bottom: 1px solid rgb(238, 238, 238);color: rgb(51, 51, 51);"
       >2、三种隐式转换类型</h2>
@@ -293,39 +115,24 @@
       <h4
         style="box-sizing: border-box;margin-top: 1em;margin-bottom: 16px;line-height: 1.4;font-size: 1.15em;font-weight: bold;color: rgb(51, 51, 51);"
       >2.1.1、如果PreferredType被标记为Number，则会进行下面的操作流程来转换输入的值。</h4>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span
-  class
-  style=""
->、如果输入的值已经是一个原始值，则直接返回它</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+      <pre><code style><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span>、如果输入的值已经是一个原始值，则直接返回它</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
-  style=""
+  style
 >、否则，如果输入的值是一个对象，则调用该对象的</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
->()方法，</span><span
+  style
+>()方法，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; </span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; </span><span
+  style
+>如果</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span
   class
-  style=""
->如果</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
+  style
 >()方法的返回值是一个原始值，则返回这个原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -334,19 +141,19 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >3</span><span
   class
-  style=""
+  style
 >、否则，调用这个对象的</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >()方法，如果</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >()方法返回的是一个原始值，则返回这个原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -355,44 +162,35 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >4</span><span
   class
-  style=""
+  style
 >、否则，抛出</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >TypeError</span><span
   class
-  style=""
+  style
 >异常。</span></code></pre>
       <h4
         style="box-sizing: border-box;margin-top: 1em;margin-bottom: 16px;line-height: 1.4;font-size: 1.15em;font-weight: bold;color: rgb(51, 51, 51);"
       >2.1.2、如果PreferredType被标记为String，则会进行下面的操作流程来转换输入的值。</h4>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span
-  class
-  style=""
->、如果输入的值已经是一个原始值，则直接返回它</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span>、如果输入的值已经是一个原始值，则直接返回它</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
-  style=""
+  style
 >、否则，调用这个对象的</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >()方法，如果</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >()方法返回的是一个原始值，则返回这个原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -401,25 +199,19 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >3</span><span
   class
-  style=""
+  style
 >、否则，如果输入的值是一个对象，则调用该对象的</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
->()方法，</span><span
+  style
+>()方法，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; </span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; </span><span
+  style
+>如果</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span
   class
-  style=""
->如果</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
+  style
 >()方法的返回值是一个原始值，则返回这个原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -428,45 +220,39 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >4</span><span
   class
-  style=""
+  style
 >、否则，抛出</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >TypeError</span><span
   class
-  style=""
+  style
 >异常。</span></code></pre>
       <p style>既然PreferredType是可选参数，那么如果没有这个参数时，怎么转换呢？PreferredType的值会按照这样的规则来自动设置：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span
-  class
-  style=""
->、该对象为</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span class style>、该对象为</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Date</span><span
   class
-  style=""
+  style
 >类型，则</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >PreferredType</span><span
   class
-  style=""
+  style
 >被设置为</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->String2</span><span
+>String</span><span
   class
-  style=""
->、否则，</span><span
+  style
+>  2、否则，</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >PreferredType</span><span
   class
-  style=""
+  style
 >被设置为</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
@@ -484,194 +270,71 @@
         >Date, Array, Math, Number, Boolean, String, Array, RegExp, Function</code>。
       </p>
       <p style>1、Number、Boolean、String这三种构造函数生成的基础值的对象形式，通过valueOf转换后会变成相应的原始值。如：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> num </span><span
-  class
-  style=""
->=</span><span
+> num </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> newNumber</span><span
+> new Number</span><span
   class
-  style=""
->(</span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);">'123'</span><span class style>);</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">num</span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 136, 0);"
->'123'</span><span
-  class
-  style=""
->);</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">num</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// 123var str = newString('12df');</span><span
+>// 123
+</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">str</span><span
+>var str = new String('12df');     <br style="box-sizing: border-box;">str</span><span
   class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// '12df'var bool = newBoolean('fd');</span><span
+>// '12df'
+</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>var bool = new Boolean('fd'); <br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->bool</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>bool</span><span class style>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
 >// true</span></code></pre>
       <p style>2、Date这种特殊的对象，其原型Date.prototype上内置的valueOf函数将日期转换为日期的毫秒的形式的数值。</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
+> a </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> new Date</span><span
   class
-  style=""
->=</span><span
+  style
+>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">a</span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> newDate</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">a</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
 >// 1515143895500</span></code></pre>
       <p style>3、除此之外返回的都为this，即对象本身：(有问题欢迎告知)</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
-  class
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> newArray</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">a</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->===</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a</span><span
-  class
-  style=""
->;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> a </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> new Array</span><span style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">a</span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>===</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> a</span><span class style>;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// truevar b = newObject({});</span><span
-  class
+>// true</span><span
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">b</span><span
+>
+var b = new Object({});<br style="box-sizing: border-box;">b</span><span
   class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->valueOf</span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->===</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> b</span><span
-  class
-  style=""
->;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">valueOf</span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>===</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> b</span><span class style>;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
 >// true</span></code></pre>
@@ -684,183 +347,99 @@
       <p
         style
       >1、Number、Boolean、String、Array、Date、RegExp、Function这几种构造函数生成的对象，通过toString转换后会变成相应的字符串的形式，因为这些构造函数上封装了自己的toString方法。如：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(102, 0, 102);">Number</span><span
-  class
-  style=""
->.</span><span
+      <pre class style><code>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">Number</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">Boolean</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">String</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">Array</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">Date</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">RegExp</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+<span style="box-sizing: border-box;color: rgb(102, 0, 102);">Function</span><span>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">prototype</span><span class style>.</span><span style="box-sizing: border-box;color: rgb(0, 0, 0);">hasOwnProperty</span><span>(</span><span style="box-sizing: border-box;color: rgb(0, 136, 0);">'toString'</span><span>);</span><span style="box-sizing: border-box;color: rgb(136, 0, 0);">// true</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+  style="box-sizing: border-box;color: rgb(0, 0, 0);"
+> num </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
->prototype</span><span
+> new Number</span><span
   class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->hasOwnProperty</span><span
-  class
-  style=""
+  style
 >(</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
->'toString'</span><span
-  class
-  style=""
->);</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+>'123sd'</span><span>);</span>
+<span>num</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// trueBoolean.prototype.hasOwnProperty('toString'); // trueString.prototype.hasOwnProperty('toString'); // trueArray.prototype.hasOwnProperty('toString'); // trueDate.prototype.hasOwnProperty('toString'); // trueRegExp.prototype.hasOwnProperty('toString'); // trueFunction.prototype.hasOwnProperty('toString'); // truevar num = newNumber('123sd');</span><span
+>// 'NaN'</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+  style="box-sizing: border-box;color: rgb(0, 0, 0);"
+> str </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">num</span><span
+> new String</span><span
   class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);">'12df'</span><span>);</span>
+<span>str</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// 'NaN'var str = newString('12df');</span><span
+>// '12df'</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+  style="box-sizing: border-box;color: rgb(0, 0, 0);"
+> bool </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">str</span><span
+> new Boolean</span><span
   class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);">'fd'</span><span>);</span>
+<span>bool</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// '12df'var bool = newBoolean('fd');</span><span
-  class
+>// 'true'</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->bool</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> arr </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> new Array</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);">1,2</span><span>);</span>
+<span>arr</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// 'true'var arr = newArray(1,2);</span><span
-  class
+>// '1,2'</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">arr</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> d </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> new Date</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);"> </span><span>);</span>
+<span>d</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// '1,2'var d = newDate();</span><span
+>// "Wed Oct 11 2017 08:00:00 GMT+0800 (中国标准时间)"</span>
+
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+  style="box-sizing: border-box;color: rgb(0, 0, 0);"
+> func </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">d</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> function () {}</span><span>;</span>
+<span>func</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// "Wed Oct 11 2017 08:00:00 GMT+0800 (中国标准时间)"var func = function () {}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">func</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// "function () {}"</span></code></pre>
+>// "function () {}"</span>
+
+</code></pre>
       <p style>除这些对象及其实例化对象之外，其他对象返回的都是该对象的类型，(有问题欢迎告知)，都是继承的Object.prototype.toString方法。</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+      <pre><code>
+<span style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+  style="box-sizing: border-box;color: rgb(0, 0, 0);"
+> obj </span><span class style>=</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> obj </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> newObject</span><span
-  class
-  style=""
->({});</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">obj</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->();</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
+> new Object </span><span>({});</span>
+<span>obj</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
->// "[object Object]"Math.toString(); // "[object Math]"</span></code></pre>
+>// "[object Object]"</span>
+
+<span>Math</span><span>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>();</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
+  style="box-sizing: border-box;color: rgb(136, 0, 0);"
+>// "[object Math]"</span>
+
+</code></pre>
       <p
         style
       >从上面valueOf和toString两个函数对对象的转换可以看出为什么对于ToPrimitive(input, PreferredType?)，PreferredType没有设定的时候，除了Date类型，PreferredType被设置为String，其它的会设置成Number。</p>
@@ -901,108 +480,63 @@
         <br style="box-sizing: border-box;">参数结果undefined’undefined’null’null’布尔值转换为’true’ 或 ‘false’数字数字转换字符串，比如：1.765转为’1.765’字符串无须转换对象(obj)先进行 ToPrimitive(obj, String)转换得到原始值，在进行ToString转换为字符串
         <br style="box-sizing: border-box;">讲了这么多，是不是还不是很清晰，先来看看一个例子：
       </p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="">({}</span><span
+      <pre class style><code style><span class style>({}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>+</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{})</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>?</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->+</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{})</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->?</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
+  style
 >两个对象的值进行+运算符，肯定要先进行隐式转换为原始类型才能进行计算。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 ><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->、进行</span><span
+>1</span><span class style>、进行</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
+  style
 >转换，由于没有指定</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >PreferredType</span><span
   class
-  style=""
+  style
 >类型，{}会使默认值为</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
+  style
 >，进行</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->input</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">input</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->)运算。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>)运算。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
-  style=""
+  style
 >、所以会执行</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >方法，({}).</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >(),返回的还是{}对象，不是原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -1011,159 +545,102 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >3</span><span
   class
-  style=""
+  style
 >、继续执行</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >方法，({}).</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >(),返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object]"</span><span
   class
-  style=""
->，是原始值。</span><span
+  style
+>，是原始值。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
+  style
 >故得到最终的结果，</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object]"</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->+</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>+</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object]"</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object][object Object]"</span></code></pre>
       <p style>再来一个指定类型的例子：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">2</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">2</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->?</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+> </span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>?</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >1</span><span
   class
-  style=""
+  style
 >、首先*运算符只能对</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >number</span><span
   class
-  style=""
+  style
 >类型进行运算，故第一步就是对{}进行</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->类型转换。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>类型转换。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
-  style=""
+  style
 >、由于{}是对象类型，故先进行原始类型转换，</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->input</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">input</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->)运算。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>)运算。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >3</span><span
   class
-  style=""
+  style
 >、所以会执行</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >方法，({}).</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >(),返回的还是{}对象，不是原始值。</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -1172,86 +649,59 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >4</span><span
   class
-  style=""
+  style
 >、继续执行</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >方法，({}).</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
+  style
 >(),返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object]"</span><span
   class
-  style=""
->，是原始值。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>，是原始值。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >5</span><span
   class
-  style=""
+  style
 >、转换为原始值后再进行</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
+  style
 >运算，</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >"[object Object]"</span><span
   class
-  style=""
->就转换为</span><span
+  style
+>就转换为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">NaN</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->NaN</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->故最终的结果为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>故最终的结果为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >NaN</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >NaN</span></code></pre>
@@ -1261,804 +711,180 @@
       <p style>
         <strong style="box-sizing: border-box;font-weight: bold;">== 运算符的规则规律性不是那么强，按照下面流程来执行,es5文档</strong>
       </p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="">比较运算</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x</span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->其中</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->和</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->是值，返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+      <pre class style><code style><span class style>比较运算</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x</span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>其中</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>和</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>是值，返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >true</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->或者</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>或者</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >false</span><span
   class
-  style=""
+  style
 >。这样的比较按如下方式进行：</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 ><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>1</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->与</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>与</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->相同，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->则</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>相同，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>则</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">
  &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>1</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Undefined</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->2</span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>2</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Null</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Null</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->3</span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>3</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->则</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>则</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">
  &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->)、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span class style>)、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->NaN</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>NaN</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->2</span><span
-  class
-  style=""
->)、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">2</span><span class style>)、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->NaN</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>NaN</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->3</span><span
-  class
-  style=""
->)、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->与</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为相等数值，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">3</span><span class style>)、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>与</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为相等数值，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->4</span><span
-  class
-  style=""
->)、若</span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">4</span><span class style>)、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>+</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">0</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->+</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->−</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>−</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">0</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->5</span><span
-  class
-  style=""
->)、若</span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">5</span><span class style>)、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>−</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">0</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->−</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->+</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>+</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">0</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; &nbsp; &nbsp;</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->6</span><span
-  class
-  style=""
->)、返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">6</span><span class style>)、返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;">
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;">
  &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->4</span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>4</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
-  style=""
->,</span><span
+  style
+>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>则当</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>和</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->则当</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->和</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
+  style
 >为完全相同的字符序列（长度相等且相同字符在相同位置）时返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 > </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->否则，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>否则，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->5</span><span
-  class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>5</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Boolean</span><span
   class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->当</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->和</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为同为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>当</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>和</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为同为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >true</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->或者同为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>或者同为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >false</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->时返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>时返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->否则，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>否则，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->6</span><span
+>6</span><span class style>*</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> &nbsp;</span><span class style>当</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>和</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span
   class
-  style=""
->*</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> &nbsp;</span><span
-  class
-  style=""
->当</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->和</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
+  style
 >为引用同一对象时返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
@@ -2067,716 +893,206 @@
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >true</span><span
   class
-  style=""
->。否则，返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>。否则，返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>false</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->2</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>2</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >null</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >undefined</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->3</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>3</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >undefined</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->null</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>null</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>true</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->4</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>4</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
-  style=""
->，返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->5</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>5</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->，返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->6</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>6</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Boolean</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->7</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>7</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Boolean</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->8</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>8</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->或</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>或</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->，且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Object</span><span
   class
-  style=""
->，返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> x </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> x </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->9</span><span
-  class
-  style=""
->、若</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>9</span><span class style>、若</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Object</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->且</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>且</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
->Type</span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>Type</span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >String</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->或</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>或</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回比较</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回比较</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> y </span><span
-  class
-  style=""
->的结果。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> y </span><span class style>的结果。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->10</span><span
-  class
-  style=""
->、返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+>10</span><span class style>、返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->。</span></code></pre>
+>false</span><span class style>。</span></code></pre>
       <p style>上面主要分为两类，x、y类型相同时，和类型不相同时。</p>
       <p style>类型相同时，没有类型转换，主要注意NaN不与任何值相等，包括它自己，即NaN !== NaN。</p>
       <p style>类型不相同时，</p>
@@ -2796,85 +1112,34 @@
         </section>
       </section>
       <p style>所以类型不相同时，可以会进行上面几条的比较，比如：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">var</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
+> a </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;valueOf</span><span
   class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;valueOf</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>:</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >function</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; return1</span><span
   class
-  style=""
->()</span><span
+  style
+>;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;</span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>},</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;toString</span><span
   class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; return1</span><span
-  class
-  style=""
->;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;</span><span
-  class
-  style=""
->},</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;toString</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>:</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >function</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp; </span><span
+> </span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp; </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >return</span><span
@@ -2885,29 +1150,17 @@
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 ><br style="box-sizing: border-box;"> &nbsp;</span><span
   class
-  style=""
->}</span><span
+  style
+>}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >true</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
+> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> a </span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
 >// true;</span><span
@@ -2915,214 +1168,79 @@
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 ><br style="box-sizing: border-box;"></span><span
   class
-  style=""
->首先，</span><span
+  style
+>首先，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>与</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>类型不同，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">boolean</span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->与</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->类型不同，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->boolean</span><span
-  class
-  style=""
+  style
 >类型，则进行</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->转换为</span><span
+  style
+>转换为</span><span class style="box-sizing: border-box;color: rgb(0, 102, 102);">1</span><span class style>,为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">number</span><span class style>类型。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
+  style
+>接着，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x</span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">number</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">object</span><span
   class
-  style=""
->,为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->number</span><span
-  class
-  style=""
->类型。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->接着，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x</span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->number</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->object</span><span
-  class
-  style=""
->类型，对</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y</span><span
-  class
-  style=""
->进行原始转换，</span><span
+  style
+>类型，对</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y</span><span class style>进行原始转换，</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">a</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->a</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
+  style
 >?),没有指定转换类型，默认</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
->number</span><span
+>number</span><span class style>类型。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style=""
->类型。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
+  style
 >而后，</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->a</span><span
-  class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">a</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >Number</span><span
   class
-  style=""
+  style
 >)首先调用</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >方法，返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >1</span><span
   class
-  style=""
+  style
 >，得到原始类型</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
+>1</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->最后</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>最后</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >1</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
-  class
-  style=""
->，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
->。</span></code></pre>
+>1</span><span class style>，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">true</span><span class style>。</span></code></pre>
       <p style>我们再看一段很复杂的比较，如下：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="">[]</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->!{}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+      <pre class style><code style><span class style>[]</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>!{}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(136, 0, 0);"
 >//1、! 运算符优先级高于==，故先进行！运算。</span><span
@@ -3133,424 +1251,178 @@
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
   class
-  style=""
+  style
 >、!{}运算结果为</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >false</span><span
   class
-  style=""
->，结果变成</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->[]</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>，结果变成</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>[]</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >false</span><span
   class
-  style=""
->比较。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>比较。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >3</span><span
   class
-  style=""
+  style
 >、根据上面第</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >7</span><span
   class
-  style=""
->条，等式右边</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->y </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>条，等式右边</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">y </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->false</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">false</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >0</span><span
   class
-  style=""
->。结果变成</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->[]</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>。结果变成</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>[]</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>0</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >4</span><span
   class
-  style=""
+  style
 >、按照上面第</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >9</span><span
   class
-  style=""
+  style
 >条，比较变成</span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToPrimitive</span><span
   class
-  style=""
->([])</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>([])</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
+>0</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
-  class
-  style=""
+  style
 >按照上面规则进行原始值转换，[]会先调用</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >valueOf</span><span
   class
-  style=""
+  style
 >函数，返回</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
->this</span><span
+>this</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; </span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; </span><span
-  class
-  style=""
+  style
 >不是原始值，继续调用</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 >toString</span><span
   class
-  style=""
->方法，</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->[].</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->toString</span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>方法，</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>[].</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">toString</span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
->''</span><span
+>''</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; </span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; </span><span
-  class
-  style=""
->故结果为</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>故结果为</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >''</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
-  class
-  style=""
->比较。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+>0</span><span class style>比较。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >5</span><span
   class
-  style=""
+  style
 >、根据上面第</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >5</span><span
   class
-  style=""
->条，等式左边</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->x </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>条，等式左边</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">x </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(102, 0, 102);"
 >ToNumber</span><span
   class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 136, 0);"
->''</span><span
-  class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>(</span><span class style="box-sizing: border-box;color: rgb(0, 136, 0);">''</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
+>0</span><span class style>。</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; </span><span
   class
-  style=""
->。</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; </span><span
-  class
-  style=""
->所以结果变为：</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>所以结果变为：</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >0</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->0</span><span
+>0</span><span class style>，返回</span><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">true</span><span
   class
-  style=""
->，返回</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 136);"
->true</span><span
-  class
-  style=""
+  style
 >，比较结束。</span></code></pre>
       <p style>最后我们看看文章开头说的那道题目：</p>
-      <pre
-        class
-        style="box-sizing: border-box;overflow: auto;font-size: 13.6px;margin-top: 0px;margin-bottom: 16px;padding: 10px;line-height: 1.6;background: rgb(246, 246, 246) none repeat scroll 0% 0%;border-radius: 3px;overflow-wrap: break-word;border-color: rgb(221, 221, 221);border-style: solid;border-width: 1px;-moz-border-top-colors: none;-moz-border-left-colors: none;-moz-border-bottom-colors: none;-moz-border-right-colors: none;white-space: pre-wrap;color: rgb(51, 51, 51);font-style: normal;font-variant-ligatures: normal;font-variant-caps: normal;font-weight: normal;letter-spacing: normal;text-align: left;text-indent: 0px;text-transform: none;word-spacing: 0px;-webkit-text-stroke-width: 0px;text-decoration-style: initial;text-decoration-color: initial;"
-      ><code style="box-sizing: border-box;font-size: 13.6px;"><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">const</span><span
+      <pre class style><code style><span class style="box-sizing: border-box;color: rgb(0, 0, 136);">const</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
+> a </span><span class style>=</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;i</span><span
   class
-  style=""
->=</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;i</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>:</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->1</span><span
+>1</span><span class style>,</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;toString</span><span
   class
-  style=""
->,</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;toString</span><span
-  class
-  style=""
->:</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+  style
+>:</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >function</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->()</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
+> </span><span class style>()</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp; &nbsp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >return</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a</span><span
+> a</span><span class style>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">i</span><span class style>++;</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;</span><span
   class
-  style=""
->.</span><span
+  style
+>}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->i</span><span
-  class
-  style=""
->++;</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;</span><span
-  class
-  style=""
->}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
->}</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
+  style
+>}</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 136);"
 >if</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->(</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> </span><span class style>(</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">a </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >1</span><span
@@ -3558,17 +1430,11 @@
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 > </span><span
   class
-  style=""
+  style
 >&amp;&amp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> a </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
 >2</span><span
@@ -3576,52 +1442,25 @@
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
 > </span><span
   class
-  style=""
+  style
 >&amp;&amp;</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> a </span><span
-  class
-  style=""
->==</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
+> a </span><span class style>==</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span
   class
   style="box-sizing: border-box;color: rgb(0, 102, 102);"
->3</span><span
+>3</span><span class style>)</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"> </span><span class style>{</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"> &nbsp;console</span><span
   class
-  style=""
->)</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-> </span><span
-  class
-  style=""
->{</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"> &nbsp;console</span><span
-  class
-  style=""
->.</span><span
-  class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
->log</span><span
-  class
-  style=""
->(</span><span
+  style
+>.</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);">log</span><span class style>(</span><span
   class
   style="box-sizing: border-box;color: rgb(0, 136, 0);"
 >'hello world!'</span><span
   class
-  style=""
->);</span><span
+  style
+>);</span><span class style="box-sizing: border-box;color: rgb(0, 0, 0);"><br style="box-sizing: border-box;"></span><span
   class
-  style="box-sizing: border-box;color: rgb(0, 0, 0);"
-><br style="box-sizing: border-box;"></span><span
-  class
-  style=""
+  style
 >}</span></code></pre>
       <p
         style
@@ -3658,6 +1497,44 @@ export default {
 
 <style scoped lang="less">
 @import "../../assets/less/basePage.less";
+pre {
+  box-sizing: border-box;
+  overflow: auto;
+  font-size: 13.6px;
+  margin-top: 0px;
+  margin-bottom: 16px;
+  padding: 10px;
+  line-height: 1.6;
+  background: rgb(246, 246, 246) none repeat scroll 0% 0%;
+  border-radius: 3px;
+  overflow-wrap: break-word;
+  border-color: rgb(221, 221, 221);
+  border-style: solid;
+  border-width: 1px;
+  -moz-border-top-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-bottom-colors: none;
+  -moz-border-right-colors: none;
+  white-space: pre-wrap;
+  color: rgb(51, 51, 51);
+  font-style: normal;
+  font-variant-ligatures: normal;
+  font-variant-caps: normal;
+  font-weight: normal;
+  letter-spacing: normal;
+  text-align: left;
+  text-indent: 0px;
+  text-transform: none;
+  word-spacing: 0px;
+  -webkit-text-stroke-width: 0px;
+  text-decoration-style: initial;
+  text-decoration-color: initial;
+}
+code {
+  box-sizing: border-box;
+  font-size: 13.6px;
+}
+
 span {
   box-sizing: border-box;
   color: rgb(102, 102, 0);

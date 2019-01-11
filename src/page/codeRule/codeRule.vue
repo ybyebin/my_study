@@ -1,7 +1,8 @@
 <template>
   <div class="main-content">
     <div class="pre">
-        <a href=""></a>
+        
+     <a href="https://github.com/ecomfe/spec/blob/master/javascript-style-guide.md">百度js编码规范</a>
     </div>
   </div>
 </template>

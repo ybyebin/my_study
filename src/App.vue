@@ -155,7 +155,14 @@ export default {
               name: "JPageEight"
             },
           ]
-        }
+        },
+        {
+          title: "基本编码规范",
+          detail: [
+            { title: "编码规范", name: "codeRule" },
+           
+          ]
+        },
       ]
     };
   },

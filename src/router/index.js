@@ -35,7 +35,8 @@ import JPageEight from '@/page/javaScript/pageEight'
 // 解决方案
 import bookMark from '@/page/solveQuestion/bookmark'
 
-
+// 编码规范
+import codeRule from '@/page/codeRule/codeRule'
 
 
 Vue.use(Router)
@@ -154,6 +155,13 @@ export default new Router({
       path: '/bookmark',
       name: 'bookmark',
       component: bookMark,
+    },
+
+    // 编码规范
+    {
+      path: '/codeRule',
+      name: 'codeRule',
+      component: codeRule,
     }
   ]
 })
