@@ -816,7 +816,51 @@
 }</span></pre>
         </div>
       </div>
+
+
+        <div id="debouce">
+            <blockquote>防抖</blockquote> 
+             <div>
+            <div class="cnblogs_code"><pre><span style="color: #000000;" data-mce-style="color: #000000;">function debounce(func, wait, immediate) {
+                </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">var</span><span style="color: #000000;" data-mce-style="color: #000000;"> timeout, result;
+                </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">var</span> debounced =<span style="color: #000000;" data-mce-style="color: #000000;"> function () {
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">var</span> context = <span style="color: #0000FF;" data-mce-style="color: #0000ff;">this</span><span style="color: #000000;" data-mce-style="color: #000000;">;
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">var</span> args =<span style="color: #000000;" data-mce-style="color: #000000;"> arguments;
+            
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">if</span><span style="color: #000000;" data-mce-style="color: #000000;"> (timeout) clearTimeout(timeout);
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">if</span><span style="color: #000000;" data-mce-style="color: #000000;"> (immediate) {
+                        </span><span style="color: #008000;" data-mce-style="color: #008000;">//</span><span style="color: #008000;" data-mce-style="color: #008000;"> 如果已经执行过，不再执行</span>
+                        <span style="color: #0000FF;" data-mce-style="color: #0000ff;">var</span> callNow = !<span style="color: #000000;" data-mce-style="color: #000000;">timeout;
+                        timeout </span>=<span style="color: #000000;" data-mce-style="color: #000000;"> setTimeout(function(){
+                            timeout </span>= <span style="color: #0000FF;" data-mce-style="color: #0000ff;">null</span><span style="color: #000000;" data-mce-style="color: #000000;">;
+                        }, wait)
+                        </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">if</span> (callNow) result =<span style="color: #000000;" data-mce-style="color: #000000;"> func.apply(context, args)
+                    }
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">else</span><span style="color: #000000;" data-mce-style="color: #000000;"> {
+                        timeout </span>=<span style="color: #000000;" data-mce-style="color: #000000;"> setTimeout(function(){
+                            func.apply(context, args)
+                        }, wait);
+                    }
+                    </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">return</span><span style="color: #000000;" data-mce-style="color: #000000;"> result;
+                };
+            
+                debounced.cancel </span>=<span style="color: #000000;" data-mce-style="color: #000000;"> function() {
+                    clearTimeout(timeout);
+                    timeout </span>= <span style="color: #0000FF;" data-mce-style="color: #0000ff;">null</span><span style="color: #000000;" data-mce-style="color: #000000;">;
+                };
+                </span><span style="color: #0000FF;" data-mce-style="color: #0000ff;">return</span><span style="color: #000000;" data-mce-style="color: #000000;"> debounced;
+            }</span></pre></div>
     </div>
+        </div>
+    </div>
+
+  
+
+
+
+
+
+
   </div>
 </template>
 
@@ -866,6 +910,10 @@ export default {
         {
           name: "动态加载JS",
           href: "#loadjs"
+        },
+        {
+          name: "防抖",
+          href: "#debouce"
         }
       ]
     };
